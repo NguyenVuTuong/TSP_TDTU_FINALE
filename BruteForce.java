@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,8 +34,13 @@ public class BruteForce {
 
         long endTime = System.currentTimeMillis();
         double executionTime = (endTime - startTime) / 1000.0;
-        System.out.println("Runtime: " + executionTime + " seconds");
-
+        System.out.println("\nBrute Force Runtime: " + executionTime + " seconds");
+        // try (BufferedWriter writer = new BufferedWriter(new FileWriter("runtime.csv", true))) {
+        //     writer.write(" "+String.valueOf(executionTime));
+        // } catch (IOException e) {
+        //     // Handle IO errors (e.g., file not found, permission issues)
+        //     e.printStackTrace();
+        // }
         return bestTour;
     }
 

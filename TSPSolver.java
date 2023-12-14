@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -76,5 +79,12 @@ public class TSPSolver {
         long endTime = System.currentTimeMillis();
         double executionTime = (endTime - startTime) / 1000.0;
         System.out.println("Runtime: " + executionTime + " seconds");
+
+        // try (BufferedWriter writer = new BufferedWriter(new FileWriter("runtime.csv"))) {
+        //     writer.write(String.valueOf(executionTime));
+        // } catch (IOException e) {
+        //     // Handle IO errors (e.g., file not found, permission issues)
+        //     e.printStackTrace();
+        // }
     }
 }
