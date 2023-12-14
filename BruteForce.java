@@ -42,8 +42,8 @@ public class BruteForce {
     }
 
     public void printTourAndLength() {
-        System.out.println("Final Best Tour: " + bestTour);
-        System.out.println("Length of Best Tour: " + bestLength);
+        System.out.println("Final Best Tour Brute: " + bestTour);
+        System.out.println("Length of Best Tour Brute: " + bestLength);
     }
 
     private boolean nextPermutation(List<Integer> array) {

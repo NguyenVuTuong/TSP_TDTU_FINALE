@@ -26,6 +26,8 @@ public class TSPGeneticAlgorithm implements GeneticAlgorithm<List<Integer>> {
     public TSPGeneticAlgorithm(double crossoverProbability, double mutationProbability, List<String> lines) {
         this.crossoverProbability = crossoverProbability;
         this.mutationProbability = mutationProbability;
+        // this.crossoverProbability = 0.8;
+        // this.mutationProbability = 0.1;
         this.lines = lines;
     }
 
