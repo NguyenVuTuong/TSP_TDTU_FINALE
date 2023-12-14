@@ -21,7 +21,8 @@ public class DataGenerator {
             int numCities = scanner.nextInt();
 
             // Write city indices to the file
-            for (int i = 0; i <= numCities; i++) {
+            writer.write("88888,");
+            for (int i = 1; i <= numCities; i++) {
                 writer.write(String.valueOf(i));
                 if (i < numCities) {
                     writer.write(",");
@@ -31,19 +32,29 @@ public class DataGenerator {
 
             Random random = new Random();
 
-            // Write distances between cities to the file
+            // Create a square matrix for distances
+            int[][] distances = new int[numCities + 1][numCities + 1];
+
+            for (int i = 1; i <= numCities; i++) {
+                for (int j = 1; j <= numCities; j++) {
+                    distances[i][j] = -1;
+                }
+            }
+            // Write distances between cities to the file   
             for (int i = 1; i <= numCities; i++) {
                 writer.write(String.valueOf(i));
                 for (int j = 1; j <= numCities; j++) {
-                    int distance;
                     // Set distance to a fixed value if the city is the same
-                    if (i == j) {
-                        distance = 88888; // Distance between a city and itself is 88888
-                    } else {
-                        // Generate a random distance between 1 and 100
-                        distance = random.nextInt(100) + 1;
+                    if (distances[i][j] == -1) {
+                        if (i == j) {
+                            distances[i][j] = 88888; // Distance between a city and itself is 88888
+                        } else {
+                            // Use the same distance for both (i, j) and (j, i)
+                            distances[i][j] = random.nextInt(100) + 1;
+                            distances[j][i] = distances[i][j];
+                        }
                     }
-                    writer.write("," + distance);
+                    writer.write("," + distances[i][j]);
                 }
                 writer.newLine();
             }

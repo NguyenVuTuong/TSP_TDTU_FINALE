@@ -18,8 +18,8 @@ public class main {
             } else {
                 // Set the number of iterations, cities, and population size
                 int iterations = 100;
-                int cities = lines.size();
-                int populationSize = lines.size();
+                int cities = lines.size() - 1;
+                int populationSize = lines.size() - 1;
 
                 // Generate random probabilities for crossover and mutation
                 double crossoverProbability = Math.random();
