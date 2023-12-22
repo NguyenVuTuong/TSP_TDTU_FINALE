@@ -17,6 +17,8 @@ public class TSPSolver {
     public void solve(int iterations, int populationSize, int cities) {
         // Initialize the population with random paths
         List<List<Integer>> population = tspGeneticAlgorithm.initializePopulation(populationSize, cities);
+        List<Integer> finalBestTour = new ArrayList<>();
+        int finalBestLength = Integer.MAX_VALUE;
 
         // Record the start time for runtime measurement
         long startTime = System.currentTimeMillis();
@@ -61,15 +63,21 @@ public class TSPSolver {
             // Replace the current population with the offspring population
             population = tspGeneticAlgorithm.replacePopulation(population, offspringPopulation);
 
-            // Find and display the best tour and its length in the current population
+            // Find the best tour and its length in the current population
             List<Integer> bestTour = Collections.min(population, Comparator.comparingInt(tspGeneticAlgorithm::tourLength));
             int bestLength = tspGeneticAlgorithm.tourLength(bestTour);
-            System.out.println("Best tour: " + bestTour + ", Length: " + bestLength + "\n");
-        }
 
-        // Find and display the final best tour and its length in the last population
-        List<Integer> finalBestTour = Collections.min(population, Comparator.comparingInt(tspGeneticAlgorithm::tourLength));
-        int finalBestLength = tspGeneticAlgorithm.tourLength(finalBestTour);
+            // Display the best tour and its length in the current population
+            System.out.println("Best tour: " + bestTour + ", Length: " + bestLength + "\n");
+
+            // Find the final best tour and its length
+            if(bestLength < finalBestLength) {
+                finalBestLength = bestLength;
+                finalBestTour = bestTour;
+            }            
+        }
+        
+        // Display the final best tour and its length in the last population
         System.out.println("Final Best Tour: " + finalBestTour + ", Length: " + finalBestLength);
 
         // Record the end time for runtime measurement

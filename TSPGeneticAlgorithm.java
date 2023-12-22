@@ -202,17 +202,25 @@ public class TSPGeneticAlgorithm implements GeneticAlgorithm<List<Integer>> {
     //* */ Return the mutated individual if mutation occurred, or return the original individual if no mutation occurred
     @Override
     public List<Integer> mutate(List<Integer> individual) {
+        List<Integer> mutatedIndividual = new ArrayList<>(individual);
         // Check if mutation should occur based on the mutation probability
         if (Math.random() <= mutationProbability) {
             // Randomly select two mutation points
             int mutationPoint1 = new Random().nextInt(individual.size());
-            int mutationPoint2 = new Random().nextInt(individual.size());
+            int mutationPoint2;
+            
+            // Ensure mutationPoint2 is different from mutationPoint1
+            do {
+                mutationPoint2 = new Random().nextInt(individual.size());
+            } while (mutationPoint1 == mutationPoint2);
 
-            //* */ Perform mutation by swapping the values at the two randomly selected mutation points in the individual
-            Collections.swap(individual, mutationPoint1, mutationPoint2);
+            // Perform mutation by swapping the values at the two randomly selected mutation points in the individual
+            // Collections.swap(individual, mutationPoint1, mutationPoint2);
+            
+            Collections.swap(mutatedIndividual, mutationPoint1, mutationPoint2);
         }
         // Return the mutated individual
-        return individual;
+        return mutatedIndividual;
     }
 
     /*
